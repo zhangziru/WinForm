@@ -19,9 +19,22 @@ namespace WinForm_Home_Test
             //2)在用户控件里面，里面的“按钮”和“文本框”都是私有的,在用户控件外部根本访问不到。
 
             //3)所以只能让当前的窗体加载完毕以后，让这个用户控件有一个事件。给这个事件注册一个处理程序。
-            ucLogin1.UserLoginValidation += UcLogin1_UserLoginValidation;
+            ucLogin1.UserLoginValidation += UcLogin1_UserLoginValidation1;
             
         }
+
+        private void UcLogin1_UserLoginValidation1(object sender, UserLoginEventArgs e)
+        {
+            if (e.LoginId == "admin" && e.LoginPassword == "88888")
+            {
+                e.IsOK = true;
+            }
+            else
+            {
+                e.IsOK = false;
+            }
+        }
+
         //4)当点用户控件上"登录"按钮的时候，就会调用指定的方法。
         //这里是点击登录，事件的校验方法。
         private void UcLogin1_UserLoginValidation()
